@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pages/index.css">
+    <title>Mesto</title>
+</head>
+
+<body class="body">
+<div class="page">
+
+    <div class="popup">
+        <div class="popup__container">
+            <img src="images/close-icon.png" alt="+" class="popup__icon">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="text" class="popup__input popup__input_type_title">
+            <input type="text" class="popup__input popup__input_type_subtitle">
+            <button class="popup__button">Сохранить</button>
+        </div>
+    </div>
+
+    <header class="header">
+        <img src="images/logo.svg" alt="Место" class="header__logo">
+        <div class="header__line"></div>
+    </header>
+
+    <section class="profile">
+        <img src="images/avatar.jpg" alt="Аватар" class="profile__avatar">
+        <div>
+            <div class="profile__info">
+                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <img src="images/edit-button.svg" alt="Редактировать" class="profile__edit-button">
+            </div>
+            <p class="profile__subtitle">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button">
+            <img src="images/add-button.png" alt="Add">
+        </button>
+    </section>
+
+    <section class="gallery">
+        <div class="gallery__card">
+            <img src="images/turkey.jpg" alt="Карачаевск" class="gallery__card-image">
+            <div class="gallery__card-info">
+                <h2 class="gallery__card-name">Турция</h2>
+                <img src="images/like-button.svg" alt="Лайк" class="gallery__card-like-button">
+            </div>
+        </div>
+
+        <div class="gallery__card">
+            <img src="images/paris.jpg" alt="Гора Эльбрус" class="gallery__card-image">
+            <div class="gallery__card-info">
+                <h2 class="gallery__card-name">Париж</h2>
+                <img src="images/like-button.svg" alt="Лайк" class="gallery__card-like-button">
+            </div>
+        </div>
+
+        <div class="gallery__card">
+            <img src="images/baikal.jpg" alt="Домбай" class="gallery__card-image">
+            <div class="gallery__card-info">
+                <h2 class="gallery__card-name">Байкал</h2>
+                <img src="images/like-button.svg" alt="Лайк" class="gallery__card-like-button">
+            </div>
+        </div>
+
+        <div class="gallery__card">
+            <img src="images/maldives.jpg" alt="Гора Эльбрус" class="gallery__card-image">
+            <div class="gallery__card-info">
+                <h2 class="gallery__card-name">Мальдивы</h2>
+                <img src="images/like-button.svg" alt="Лайк" class="gallery__card-like-button">
+            </div>
+        </div>
+
+        <div class="gallery__card">
+            <img src="images/china.jpg" alt="Домбай" class="gallery__card-image">
+            <div class="gallery__card-info">
+                <h2 class="gallery__card-name">Китай</h2>
+                <img src="images/like-button.svg" alt="Лайк" class="gallery__card-like-button">
+            </div>
+        </div>
+
+        <div class="gallery__card">
+            <img src="images/tibet.jpg" alt="Карачаевск" class="gallery__card-image">
+            <div class="gallery__card-info">
+                <h2 class="gallery__card-name">Тибет</h2>
+                <img src="images/like-button.svg" alt="Лайк" class="gallery__card-like-button">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer__text">© 2020 Mesto Russia</p>
+    </footer>
+
+</div>
+<script src="scripts/index.js"></script>
+</body>
+</html>

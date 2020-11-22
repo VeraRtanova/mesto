@@ -1,0 +1,6 @@
+.gallery__card {
+    width: auto;
+    overflow: hidden;
+    line-height: 0;
+    border-radius: 10px;
+}

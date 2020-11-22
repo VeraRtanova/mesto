@@ -1,0 +1,9 @@
+.gallery__card-like-button {
+    width: 19px;
+    height: 21px;
+}
+
+.gallery__card-like-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
