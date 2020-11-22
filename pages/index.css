@@ -18,3 +18,5 @@
 @import url(../blocks/gallery/__card/gallery__card.css);
 @import url(../blocks/gallery/__card-name/gallery__card-name.css);
 @import url(../blocks/gallery/__card-like-button/gallery__card-like-button.css);
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__text/footer__text.css);
