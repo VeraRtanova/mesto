@@ -1,4 +1,5 @@
 let popup = document.querySelector('.popup');
+let form = document.querySelector('.popup__container');
 
 let addButton = document.querySelector('.profile__edit-button');
 let closeButton = document.querySelector('.popup__icon');
@@ -21,7 +22,8 @@ function closePopup() {
     popup.classList.remove('popup_opened');
 }
 
-function save() {
+function save(evt) {
+    evt.preventDefault();
     profileTitle.textContent = inputTitle.value;
     profileSubtitle.textContent = inputSubtitle.value;
     closePopup();
