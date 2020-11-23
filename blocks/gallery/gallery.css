@@ -4,24 +4,24 @@
     grid-template-rows: repeat(2, 1fr);
     row-gap: 17px;
     column-gap: 20px;
-    margin: 51px 200px 0 200px;
+    margin: 51px auto 0 auto;
     width: calc(100% - 400px);
+}
+
+@media  (min-width: 560px) and (max-width: 1279px) {
+    .gallery {
+        width: calc(100% - 300px);
+    }
 }
 
 @media  (min-width: 1024px) and (max-width: 1279px) {
     .gallery {
-        margin: 51px 150px 0 150px;
-        width: calc(100% - 300px);
-        row-gap: 17px;
-        column-gap: 17px;
+        column-gap: 15px;
     }
 }
 
-
 @media (min-width: 882px) and (max-width: 1023px) {
     .gallery {
-        margin: 51px 150px 0 150px;
-        width: calc(100% - 300px);
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(3, 1fr);
         row-gap: 10px;
@@ -29,11 +29,8 @@
     }
 }
 
-
 @media (min-width: 560px) and (max-width: 881px) {
     .gallery {
-        margin: 51px 150px 0 150px;
-        width: calc(100% - 300px);
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: repeat(6, 1fr);
         row-gap: 20px;
