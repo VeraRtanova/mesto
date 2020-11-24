@@ -1,9 +1,8 @@
 .gallery__card-info {
     background: #FFFFFF;
-    height: 79px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: auto;
-    padding: 0 22px;
+    padding: 25px 22px 31px 22px;
 }
