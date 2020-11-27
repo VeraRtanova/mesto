@@ -1,6 +1,5 @@
 .popup__icon {
     background: url("../../../images/close-icon.svg") no-repeat center;
-    background-size: cover;
     height: 40px;
     width: 40px;
     top: -40px;
@@ -18,6 +17,7 @@
 
 @media screen and (max-width: 559px) {
     .popup__icon {
+        background-size: cover;
         height: 26px;
         width: 26px;
         right: 0;

@@ -9,6 +9,7 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 
 let nameInput = document.querySelector('.popup__input_type_title');
 let jobInput = document.querySelector('.popup__input_type_subtitle');
+let likeButtons = document.querySelectorAll('.gallery__card-like-button');
 
 
 function openPopup() {
@@ -31,3 +32,12 @@ function save(evt) {
 addButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 form.addEventListener('submit', save);
+
+
+for (let i = 0; i < likeButtons.length; i++) {
+    likeButtons[i].addEventListener('click', function () {
+        likeButtons[i].classList.toggle('like__active')
+        likeButtons[i].classList.toggle('gallery__card-like-button')
+    });
+}
+
