@@ -28,54 +28,8 @@
         </section>
 
         <section class="gallery">
-            <article class="gallery__card">
-                <img src="./images/turkey.jpg" alt="Турция" class="gallery__card-image">
-                <div class="gallery__card-info">
-                    <h2 class="gallery__card-name">Турция</h2>
-                    <button type="button" class="gallery__card-like-button"></button>
-                </div>
-            </article>
-
-            <article class="gallery__card">
-                <img src="./images/paris.jpg" alt="Париж" class="gallery__card-image">
-                <div class="gallery__card-info">
-                    <h2 class="gallery__card-name">Париж</h2>
-                    <button type="button" class="gallery__card-like-button"></button>
-                </div>
-            </article>
-
-            <article class="gallery__card">
-                <img src="./images/baikal.jpg" alt="Байкал" class="gallery__card-image">
-                <div class="gallery__card-info">
-                    <h2 class="gallery__card-name">Байкал</h2>
-                    <button type="button" class="gallery__card-like-button"></button>
-                </div>
-            </article>
-
-            <article class="gallery__card">
-                <img src="./images/maldives.jpg" alt="Мальдивы" class="gallery__card-image">
-                <div class="gallery__card-info">
-                    <h2 class="gallery__card-name">Мальдивы</h2>
-                    <button type="button" class="gallery__card-like-button"></button>
-                </div>
-            </article>
-
-            <article class="gallery__card">
-                <img src="./images/china.jpg" alt="Китай" class="gallery__card-image">
-                <div class="gallery__card-info">
-                    <h2 class="gallery__card-name">Китай</h2>
-                    <button type="button" class="gallery__card-like-button"></button>
-                </div>
-            </article>
-
-            <article class="gallery__card">
-                <img src="./images/tibet.jpg" alt="Тибет" class="gallery__card-image">
-                <div class="gallery__card-info">
-                    <h2 class="gallery__card-name">Тибет</h2>
-                    <button type="button" class="gallery__card-like-button"></button>
-                </div>
-            </article>
         </section>
+
     </main>
 
     <footer class="footer">
@@ -94,6 +48,17 @@
     </div>
 
 </div>
+
+<template id="card-template">
+    <article class="gallery__card">
+        <img class="gallery__card-image">
+        <div class="gallery__card-info">
+            <h2 class="gallery__card-name"></h2>
+            <button type="button" class="gallery__card-like-button"></button>
+        </div>
+    </article>
+</template>
+
 <script src="./scripts/index.js"></script>
 </body>
 </html>

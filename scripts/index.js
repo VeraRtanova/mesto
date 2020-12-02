@@ -1,3 +1,30 @@
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
 let popup = document.querySelector('.popup');
 let form = document.querySelector('.popup__container');
 
@@ -10,6 +37,7 @@ let profileSubtitle = document.querySelector('.profile__subtitle');
 let nameInput = document.querySelector('.popup__input_type_title');
 let jobInput = document.querySelector('.popup__input_type_subtitle');
 let likeButtons = document.querySelectorAll('.gallery__card-like-button');
+const gallery = document.querySelector('.gallery');
 
 
 function openPopup() {
@@ -33,11 +61,13 @@ addButton.addEventListener('click', openPopup);
 closeButton.addEventListener('click', closePopup);
 form.addEventListener('submit', save);
 
+function addCard(name, link) {
+    const cardTemplate = document.querySelector('#card-template').content;
+    const cardElement = cardTemplate.cloneNode(true);
 
-for (let i = 0; i < likeButtons.length; i++) {
-    likeButtons[i].addEventListener('click', function () {
-        likeButtons[i].classList.toggle('like__active')
-        likeButtons[i].classList.toggle('gallery__card-like-button')
-    });
+    cardElement.querySelector('.gallery__card-image').src = link;
+    cardElement.querySelector('.gallery__card-name').textContent = name;
+    gallery.append(cardElement);
 }
 
+initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
