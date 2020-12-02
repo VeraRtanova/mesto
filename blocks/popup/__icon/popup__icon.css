@@ -1,19 +1,25 @@
 .popup__icon {
+    background: url("../../../images/close-icon.svg") no-repeat center;
     height: 40px;
-    top: -30px;
-    right: -30px;
+    width: 40px;
+    top: -40px;
+    right: -40px;
     position: absolute;
+    padding: 0;
+    border: none;
 }
 
 .popup__icon:hover {
     opacity: 0.6;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 @media screen and (max-width: 559px) {
     .popup__icon {
+        background-size: cover;
         height: 26px;
+        width: 26px;
         right: 0;
-        top: -35px;
     }
 }

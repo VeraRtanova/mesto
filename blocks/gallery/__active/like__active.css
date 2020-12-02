@@ -1,0 +1,8 @@
+.like__active {
+    background: url("../../../images/like-active.svg") no-repeat center;
+    outline: none;
+    padding: 0;
+    width: 21px;
+    height: 21px;
+    border: 0;
+}
