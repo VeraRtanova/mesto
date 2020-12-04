@@ -31,7 +31,11 @@ const addCardPopup = document.querySelector('#card-popup');
 const profileClose = document.querySelector('#profile-close');
 const cardClose = document.querySelector('#card-close');
 
-const form = document.querySelector('.popup__container');
+const profileForm = document.querySelector('#profile-form');
+const cardForm = document.querySelector('#card-form');
+
+const cardNameInput = document.querySelector('#card-name-input');
+const cardLinkInput = document.querySelector('#card-link-input');
 
 const profileTitle = document.querySelector('.profile__title');
 const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -49,6 +53,11 @@ function openPopup(popup) {
     popup.classList.add('popup_opened');
 }
 
+function fillProfilePopup() {
+    nameInput.value = profileTitle.textContent;
+    jobInput.value = profileSubtitle.textContent;
+}
+
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
@@ -57,7 +66,7 @@ function save(evt) {
     evt.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
-    closePopup();
+    closePopup(editProfilePopup);
 }
 
 addCardButton.addEventListener('click', function () {
@@ -66,6 +75,7 @@ addCardButton.addEventListener('click', function () {
 
 editProfileButton.addEventListener('click', function () {
     openPopup(editProfilePopup);
+    fillProfilePopup();
 });
 
 profileClose.addEventListener('click', function () {
@@ -76,8 +86,14 @@ cardClose.addEventListener('click', function () {
     closePopup(addCardPopup);
 })
 
-
-form.addEventListener('submit', save);
+profileForm.addEventListener('submit', save);
+cardForm.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    const name = cardNameInput.value;
+    const link = cardLinkInput.value;
+    addCard(name, link);
+    closePopup(addCardPopup);
+});
 
 function addCard(name, link) {
     const cardTemplate = document.querySelector('#card-template').content;
@@ -88,7 +104,7 @@ function addCard(name, link) {
     cardElement.querySelector('.gallery__card-like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('like__active');
     });
-    gallery.append(cardElement);
+    gallery.prepend(cardElement);
 }
 
 initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
