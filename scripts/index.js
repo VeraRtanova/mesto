@@ -104,7 +104,14 @@ function addCard(name, link) {
     cardElement.querySelector('.gallery__card-like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('like__active');
     });
+
+    const trashCard = cardElement.querySelector('.gallery__card-trash-button');
+    trashCard.addEventListener('click', function (evt) {
+        evt.target.parentElement.remove();
+    });
+
     gallery.prepend(cardElement);
 }
 
 initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
+
