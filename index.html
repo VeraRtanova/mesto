@@ -51,18 +51,27 @@
         <form name="card" class="popup__container" id="card-form">
             <button type="button" class="popup__icon" id="card-close"></button>
             <h2 class="popup__title">Новое место</h2>
-            <input id="card-name-input" type="text" name="name" required placeholder="Название" class="popup__input popup__input_type_title">
+            <input id="card-name-input" type="text" name="name" required placeholder="Название"
+                   class="popup__input popup__input_type_title">
             <input id="card-link-input" type="text" name="link" required placeholder="Ссылка на картинку"
                    class="popup__input popup__input_type_subtitle">
             <button class="popup__button" type="submit">Сохранить</button>
         </form>
     </div>
 
+    <div class="popup popup__gallery" id="photo-popup">
+        <div class="popup__gallery-image">
+            <button type="button" class="popup__icon" id="photo-close"></button>
+            <img src="" class="popup__gallery-photo" alt="">
+            <p class="popup__gallery-subtitle"></p>
+        </div>
+    </div>
+
 </div>
 
 <template id="card-template">
     <article class="gallery__card">
-        <img class="gallery__card-image">
+        <img class="gallery__card-image" alt="" src="">
         <button type="button" class="gallery__card-trash-button"></button>
         <div class="gallery__card-info">
             <h2 class="gallery__card-name"></h2>
