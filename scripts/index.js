@@ -27,9 +27,11 @@ const initialCards = [
 
 const editProfilePopup = document.querySelector('#profile-popup');
 const addCardPopup = document.querySelector('#card-popup');
+const photoPopup = document.querySelector('#photo-popup');
 
 const profileClose = document.querySelector('#profile-close');
 const cardClose = document.querySelector('#card-close');
+const photoClose = document.querySelector('#photo-close');
 
 const profileForm = document.querySelector('#profile-form');
 const cardForm = document.querySelector('#card-form');
@@ -44,6 +46,8 @@ const nameInput = document.querySelector('.popup__input_type_title');
 const jobInput = document.querySelector('.popup__input_type_subtitle');
 
 const gallery = document.querySelector('.gallery');
+const popupImage = document.querySelector('.popup__gallery-photo');
+const popupCardSubtitle = document.querySelector('.popup__gallery-subtitle');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
@@ -86,7 +90,12 @@ cardClose.addEventListener('click', function () {
     closePopup(addCardPopup);
 })
 
+photoClose.addEventListener('click', function () {
+    closePopup(photoPopup);
+})
+
 profileForm.addEventListener('submit', save);
+
 cardForm.addEventListener('submit', function (ev) {
     ev.preventDefault();
     const name = cardNameInput.value;
@@ -98,20 +107,21 @@ cardForm.addEventListener('submit', function (ev) {
 function addCard(name, link) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
-
     cardElement.querySelector('.gallery__card-image').src = link;
+    cardElement.querySelector('.gallery__card-image').addEventListener('click', function (evt) {
+        popupImage.src = link;
+        popupCardSubtitle.textContent = name;
+        openPopup(photoPopup);
+    });
     cardElement.querySelector('.gallery__card-name').textContent = name;
     cardElement.querySelector('.gallery__card-like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('like__active');
     });
-
     const trashCard = cardElement.querySelector('.gallery__card-trash-button');
     trashCard.addEventListener('click', function (evt) {
         evt.target.parentElement.remove();
     });
-
     gallery.prepend(cardElement);
 }
 
 initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
-
