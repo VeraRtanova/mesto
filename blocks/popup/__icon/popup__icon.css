@@ -18,8 +18,9 @@
 @media screen and (max-width: 559px) {
     .popup__icon {
         background-size: cover;
-        height: 26px;
-        width: 26px;
-        right: 0;
+        height: 30px;
+        width: 30px;
+        top: -30px;
+        right: -10px;
     }
 }
