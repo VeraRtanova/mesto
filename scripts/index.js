@@ -1,30 +1,3 @@
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 const editProfilePopup = document.querySelector('#profile-popup');
 const addCardPopup = document.querySelector('#card-popup');
 const photoPopup = document.querySelector('#photo-popup');
@@ -66,7 +39,7 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-function save(evt) {
+function saveProfile(evt) {
     evt.preventDefault();
     profileTitle.textContent = nameInput.value;
     profileSubtitle.textContent = jobInput.value;
@@ -94,7 +67,7 @@ photoClose.addEventListener('click', function () {
     closePopup(photoPopup);
 })
 
-profileForm.addEventListener('submit', save);
+profileForm.addEventListener('submit', saveProfile);
 
 cardForm.addEventListener('submit', function (ev) {
     ev.preventDefault();
@@ -104,15 +77,20 @@ cardForm.addEventListener('submit', function (ev) {
     closePopup(addCardPopup);
 });
 
-function addCard(name, link) {
+function createCard(name, link) {
     const cardTemplate = document.querySelector('#card-template').content;
     const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.gallery__card-image').src = link;
-    cardElement.querySelector('.gallery__card-image').addEventListener('click', function (evt) {
+
+    const cardImage = cardElement.querySelector('.gallery__card-image');
+    cardImage.src = link;
+    cardImage.alt = name;
+    cardImage.addEventListener('click', function (evt) {
+        popupImage.alt = name;
         popupImage.src = link;
         popupCardSubtitle.textContent = name;
         openPopup(photoPopup);
     });
+
     cardElement.querySelector('.gallery__card-name').textContent = name;
     cardElement.querySelector('.gallery__card-like-button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('like__active');
@@ -121,7 +99,12 @@ function addCard(name, link) {
     trashCard.addEventListener('click', function (evt) {
         evt.target.parentElement.remove();
     });
-    gallery.prepend(cardElement);
+    return cardElement;
+}
+
+function addCard(name, link) {
+    const card = createCard(name, link);
+    gallery.prepend(card);
 }
 
 initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
