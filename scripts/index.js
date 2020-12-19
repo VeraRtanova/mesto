@@ -52,7 +52,6 @@ addCardButton.addEventListener('click', function () {
 
 editProfileButton.addEventListener('click', function () {
     openPopup(editProfilePopup);
-    fillProfilePopup();
 });
 
 profileClose.addEventListener('click', function () {
@@ -108,3 +107,5 @@ function addCard(name, link) {
 }
 
 initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
+
+fillProfilePopup();
