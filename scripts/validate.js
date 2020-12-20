@@ -51,6 +51,7 @@ const enableValidation = (settings) => {
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
+            formElement.reset();
         });
         setEventListeners(formElement, settings);
     });

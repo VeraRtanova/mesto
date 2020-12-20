@@ -41,6 +41,8 @@ function openPopup(popup) {
 function fillProfilePopup() {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
+    nameInput.dispatchEvent(new Event('input'));
+    jobInput.dispatchEvent(new Event('input'));
 }
 
 function closePopup(popup) {
@@ -61,20 +63,17 @@ addCardButton.addEventListener('click', function () {
 
 editProfileButton.addEventListener('click', function () {
     openPopup(editProfilePopup);
+    fillProfilePopup();
 });
 
-const closePopupFone = () => {
-    const popupFone = document.querySelectorAll('.popup');
-    popupFone.forEach((popup) => {
-        popup.addEventListener('click', (evt) => {
-            if (evt.target.classList.contains('popup')) {
-                closePopup(evt.target);
-            }
-        });
+const allPopups = document.querySelectorAll('.popup');
+allPopups.forEach((popup) => {
+    popup.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup')) {
+            closePopup(evt.target);
+        }
     });
-};
-
-closePopupFone();
+});
 
 profileClose.addEventListener('click', function () {
     closePopup(editProfilePopup);
@@ -129,5 +128,3 @@ function addCard(name, link) {
 }
 
 initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
-
-fillProfilePopup();
