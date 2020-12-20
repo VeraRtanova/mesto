@@ -95,6 +95,7 @@ cardForm.addEventListener('submit', function (ev) {
     const link = cardLinkInput.value;
     addCard(name, link);
     closePopup(addCardPopup);
+    cardForm.reset();
 });
 
 function createCard(name, link) {
