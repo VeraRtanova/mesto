@@ -26,7 +26,7 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 
 
-function escapeListener(evt) {
+function closePopupByEsc(evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector('.popup_opened');
         closePopup(openedPopup);
@@ -35,7 +35,7 @@ function escapeListener(evt) {
 
 function openPopup(popup) {
     popup.classList.add('popup_opened');
-    document.addEventListener('keydown', escapeListener);
+    document.addEventListener('keydown', closePopupByEsc);
 }
 
 function fillProfilePopup() {
@@ -45,7 +45,7 @@ function fillProfilePopup() {
 
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
-    document.removeEventListener('keydown', escapeListener);
+    document.removeEventListener('keydown', closePopupByEsc);
 }
 
 function saveProfile(evt) {
