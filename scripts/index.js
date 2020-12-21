@@ -24,7 +24,8 @@ const popupCardSubtitle = document.querySelector('.popup__gallery-subtitle');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-
+const saveCardButton = document.querySelector('#card-popup-button');
+const saveProfileButton = document.querySelector('#profile-popup-button');
 
 function closePopupByEsc(evt) {
     if (evt.key === "Escape") {
@@ -41,8 +42,8 @@ function openPopup(popup) {
 function fillProfilePopup() {
     nameInput.value = profileTitle.textContent;
     jobInput.value = profileSubtitle.textContent;
-    nameInput.dispatchEvent(new Event('input'));
-    jobInput.dispatchEvent(new Event('input'));
+    saveProfileButton.removeAttribute('disabled');
+    saveProfileButton.classList.remove('popup__button_disabled');
 }
 
 function closePopup(popup) {
@@ -94,6 +95,8 @@ cardForm.addEventListener('submit', function (ev) {
     const name = cardNameInput.value;
     const link = cardLinkInput.value;
     addCard(name, link);
+    saveCardButton.setAttribute('disabled', true);
+    saveCardButton.classList.add('popup__button_disabled');
     closePopup(addCardPopup);
     cardForm.reset();
 });
