@@ -18,13 +18,13 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const nameInput = document.querySelector('.popup__input_type_title');
 const jobInput = document.querySelector('.popup__input_type_subtitle');
 
-const gallery = document.querySelector('.gallery');
 const popupImage = document.querySelector('.popup__gallery-photo');
 const popupCardSubtitle = document.querySelector('.popup__gallery-subtitle');
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 
+import Card from "./сard.js";
 
 function closePopupByEsc(evt) {
     if (evt.key === "Escape") {
@@ -94,7 +94,7 @@ cardForm.addEventListener('submit', function (ev) {
     ev.preventDefault();
     const name = cardNameInput.value;
     const link = cardLinkInput.value;
-    addCard(name, link);
+    Card(name, link);
     closePopup(addCardPopup);
 });
 
@@ -112,22 +112,12 @@ function createCard(name, link) {
         openPopup(photoPopup);
     });
 
-    cardElement.querySelector('.gallery__card-name').textContent = name;
-    cardElement.querySelector('.gallery__card-like-button').addEventListener('click', function (evt) {
-        evt.target.classList.toggle('like__active');
-    });
-    const trashCard = cardElement.querySelector('.gallery__card-trash-button');
-    trashCard.addEventListener('click', function (evt) {
-        evt.target.parentElement.remove();
-    });
     return cardElement;
 }
 
-function addCard(name, link) {
-    const card = createCard(name, link);
-    gallery.prepend(card);
-}
-
-initialCards.forEach(mesto => addCard(mesto.name, mesto.link));
+createCard(name, link);
 
 fillProfilePopup();
+
+
+
