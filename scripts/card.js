@@ -1,3 +1,6 @@
+import {gallery, photoPopup, popupCardSubtitle, popupImage} from "./index.js";
+import {openPopup} from "./index.js";
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -25,8 +28,6 @@ const initialCards = [
     }
 ];
 
-const gallery = document.querySelector('.gallery');
-
 export class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
@@ -52,6 +53,7 @@ export class Card {
 
         this._setEventListeners();
         this._handleTrashCardClick();
+        this._handleCardClick();
 
         return this._element;
     }
@@ -69,6 +71,15 @@ export class Card {
     _handleTrashCardClick() {
         this._element.querySelector('.gallery__card-trash-button').addEventListener('click', (evt) => {
             evt.target.parentElement.remove();
+        });
+    }
+
+    _handleCardClick() {
+        this._element.addEventListener('click', evt => {
+            popupImage.alt = this._name;
+            popupImage.src = this._link;
+            popupCardSubtitle.textContent = name;
+            openPopup(photoPopup);
         });
     }
 }
