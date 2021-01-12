@@ -78,7 +78,7 @@ export class Card {
         this._element.addEventListener('click', evt => {
             popupImage.alt = this._name;
             popupImage.src = this._link;
-            popupCardSubtitle.textContent = name;
+            popupCardSubtitle.textContent = this._name;
             openPopup(photoPopup);
         });
     }
