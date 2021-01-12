@@ -51,21 +51,17 @@ export class Card {
         this._element.querySelector('.gallery__card-image').src = this._link;
         this._element.querySelector('.gallery__card-name').textContent = this._name;
 
-        this._setEventListeners();
+        this._handleLikeClick();
         this._handleTrashCardClick();
         this._handleCardClick();
 
         return this._element;
     }
 
-    _setEventListeners() {
-        this._element.querySelector('.gallery__card-like-button').addEventListener('click', () => {
-            this._handleLikeClick();
-        });
-    }
-
     _handleLikeClick() {
-        this._element.querySelector('.gallery__card-like-button').classList.toggle('like__active')
+        this._element.querySelector('.gallery__card-like-button').addEventListener('click', (evt) => {
+            evt.target.classList.toggle('like__active');
+        });
     }
 
     _handleTrashCardClick() {
@@ -75,7 +71,7 @@ export class Card {
     }
 
     _handleCardClick() {
-        this._element.addEventListener('click', evt => {
+        this._element.querySelector('.gallery__card-image').addEventListener('click', evt => {
             popupImage.alt = this._name;
             popupImage.src = this._link;
             popupCardSubtitle.textContent = this._name;
