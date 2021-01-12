@@ -25,7 +25,8 @@ const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
 export const gallery = document.querySelector('.gallery');
 
-import {Card} from "./card.js";
+import {Card} from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
 
 function closePopupByEsc(evt) {
     if (evt.key === "Escape") {
@@ -106,6 +107,19 @@ cardForm.addEventListener('submit', function (ev) {
 });
 
 fillProfilePopup();
+
+const validationSettings = {
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+}
+
+document.querySelectorAll('.popup__container').forEach((formElement) => {
+    const formValidator = new FormValidator(validationSettings, formElement);
+    formValidator.enableValidation();
+});
 
 
 
