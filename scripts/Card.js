@@ -20,10 +20,11 @@ export class Card {
 
     generateCard() {
         this._element = this._getTemplate();
-
-        this._element.querySelector('.gallery__card-image').src = this._link;
-        this._element.querySelector('.gallery__card-image').alt = this._name;
         this._element.querySelector('.gallery__card-name').textContent = this._name;
+
+        const cardImage = this._element.querySelector('.gallery__card-image')
+        cardImage.src = this._link;
+        cardImage.alt = this._name;
 
         this._handleLikeClick();
         this._handleTrashCardClick();
