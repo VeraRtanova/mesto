@@ -23,7 +23,7 @@ export const popupCardSubtitle = document.querySelector('.popup__gallery-subtitl
 
 const editProfileButton = document.querySelector('.profile__edit-button');
 const addCardButton = document.querySelector('.profile__add-button');
-export const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery');
 
 import {Card} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
@@ -66,8 +66,8 @@ editProfileButton.addEventListener('click', function () {
 });
 
 const closePopupFone = () => {
-    const popupFone = document.querySelectorAll('.popup');
-    popupFone.forEach((popup) => {
+    const allPopups = document.querySelectorAll('.popup');
+    allPopups.forEach((popup) => {
         popup.addEventListener('click', (evt) => {
             if (evt.target.classList.contains('popup')) {
                 closePopup(evt.target);
@@ -122,4 +122,35 @@ document.querySelectorAll('.popup__container').forEach((formElement) => {
 });
 
 
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 
+initialCards.forEach((item) => {
+    const card = new Card(item, '#card-template');
+    const cardElement = card.generateCard();
+    gallery.prepend(cardElement);
+});
