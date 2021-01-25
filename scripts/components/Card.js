@@ -1,7 +1,7 @@
-import {photoPopup, popupCardSubtitle, popupImage} from "./index.js";
-import {openPopup} from "./index.js";
+import {photoPopup, popupCardSubtitle, popupImage} from "../utils/constants.js";
+import {openPopup} from "../pages/index.js"
 
-export class Card {
+export default class Card {
     constructor(data, cardSelector) {
         this._name = data.name;
         this._link = data.link;
