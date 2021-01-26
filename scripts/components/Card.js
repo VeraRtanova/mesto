@@ -1,5 +1,6 @@
-import {photoPopup, popupCardSubtitle, popupImage} from "../utils/constants.js";
+import {photoPopupSelector, popupCardSubtitle, popupImage} from "../utils/constants.js";
 import {openPopup} from "../pages/index.js"
+import Popup from "./Popup.js";
 
 export default class Card {
     constructor(data, cardSelector) {
@@ -50,7 +51,7 @@ export default class Card {
             popupImage.alt = this._name;
             popupImage.src = this._link;
             popupCardSubtitle.textContent = this._name;
-            openPopup(photoPopup);
+            // open(photoPopupSelector);
         });
     }
 }

@@ -25,13 +25,14 @@ export const initialCards = [
     }
 ];
 
-export const editProfilePopup = document.querySelector('#profile-popup');
-export const addCardPopup = document.querySelector('#card-popup');
-export const photoPopup = document.querySelector('#photo-popup');
+export const addCardPopupSelector = '#card-popup';
+export const photoPopupSelector = '#photo-popup';
+export const editProfilePopupSelector = '#profile-popup';
 
 export const profileClose = document.querySelector('#profile-close');
 export const cardClose = document.querySelector('#card-close');
 export const photoClose = document.querySelector('#photo-close');
+export const popupIcon = document.querySelectorAll('.popup__icon');
 
 export const profileForm = document.querySelector('#profile-form');
 export const cardForm = document.querySelector('#card-form');

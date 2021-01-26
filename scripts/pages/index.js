@@ -1,14 +1,13 @@
 import Card from "../components/Card.js";
-
+import Popup from "../components/Popup.js";
 import {FormValidator} from "../components/FormValidator.js";
-
 import Section from '../components/Section.js';
-
 import {
-    editProfilePopup,
-    addCardPopup,
+    popupIcon,
+    addCardPopupSelector,
+    photoPopupSelector,
     profileClose,
-    photoPopup,
+    editProfilePopupSelector,
     cardClose,
     photoClose,
     profileForm,
@@ -41,12 +40,18 @@ const cardList = new Section({
 cardList.renderItems();
 
 
-function closePopupByEsc(evt) {
-    if (evt.key === "Escape") {
-        const openedPopup = document.querySelector('.popup_opened');
-        closePopup(openedPopup);
-    }
-}
+const editPopup = new Popup(editProfilePopupSelector);
+editProfileButton.addEventListener('click', () => editPopup.open());
+
+
+
+
+// function closePopupByEsc(evt) {
+//     if (evt.key === "Escape") {
+//         const openedPopup = document.querySelector('.popup_opened');
+//         closePopup(openedPopup);
+//     }
+// }
 
 export function openPopup(popup) {
     popup.classList.add('popup_opened');
@@ -70,13 +75,13 @@ function saveProfile(evt) {
     closePopup(editProfilePopup);
 }
 
-addCardButton.addEventListener('click', function () {
-    openPopup(addCardPopup);
-});
-
-editProfileButton.addEventListener('click', function () {
-    openPopup(editProfilePopup);
-});
+// addCardButton.addEventListener('click', function () {
+//     openPopup(addCardPopup);
+// });
+//
+// editProfileButton.addEventListener('click', function () {
+//     openPopup(editProfilePopup);
+// });
 
 const closePopupFone = () => {
     const allPopups = document.querySelectorAll('.popup');
@@ -91,17 +96,17 @@ const closePopupFone = () => {
 
 closePopupFone();
 
-profileClose.addEventListener('click', function () {
-    closePopup(editProfilePopup);
-})
-
-cardClose.addEventListener('click', function () {
-    closePopup(addCardPopup);
-})
-
-photoClose.addEventListener('click', function () {
-    closePopup(photoPopup);
-})
+// profileClose.addEventListener('click', function () {
+//     closePopup(editProfilePopup);
+// })
+//
+// cardClose.addEventListener('click', function () {
+//     closePopup(addCardPopup);
+// })
+//
+// photoClose.addEventListener('click', function () {
+//     closePopup(photoPopup);
+// })
 
 profileForm.addEventListener('submit', saveProfile);
 
