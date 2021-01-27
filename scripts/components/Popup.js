@@ -6,7 +6,6 @@ export default class Popup {
     open() {
         this._container.classList.add('popup_opened');
         this._handleEscClose();
-        this.setEventListeners();
     }
 
     close() {
@@ -21,8 +20,10 @@ export default class Popup {
         })
     }
 
-    setEventListeners() {
-        this._container.addEventListener('click', () => {
+    setEventListeners(popupCloseIcon) {
+        this._container
+            .querySelector(popupCloseIcon)
+            .addEventListener('click', () => {
             this.close();
         });
     }

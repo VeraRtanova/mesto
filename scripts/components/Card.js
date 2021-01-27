@@ -3,10 +3,11 @@ import {openPopup} from "../pages/index.js"
 import Popup from "./Popup.js";
 
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
+        this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
@@ -29,7 +30,7 @@ export default class Card {
 
         this._handleLikeClick();
         this._handleTrashCardClick();
-        this._handleCardClick();
+        this._element.addEventListener('click', this._handleCardClick);
 
         return this._element;
     }
@@ -46,12 +47,13 @@ export default class Card {
         });
     }
 
-    _handleCardClick() {
-        this._element.querySelector('.gallery__card-image').addEventListener('click', evt => {
-            popupImage.alt = this._name;
-            popupImage.src = this._link;
-            popupCardSubtitle.textContent = this._name;
-            // open(photoPopupSelector);
-        });
-    }
+    // _handleCardClick() {
+    //     this._element.querySelector('.gallery__card-image').addEventListener('click', evt => {
+    //         // popupImage.alt = this._name;
+    //         // popupImage.src = this._link;
+    //         // popupCardSubtitle.textContent = this._name;
+    //         // open(photoPopupSelector);
+    //
+    //     });
+    // }
 }
