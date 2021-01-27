@@ -22,28 +22,32 @@ import {
     addCardButton,
     gallerySelector,
     gallery,
+    galleryCardIm,
     initialCards
 } from "../utils/constants.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 
 
 const cardList = new Section({
         data: initialCards, renderer: (item) => {
-            const card = new Card(item, '#card-template');
+
+            const card = new Card(item, '#card-template', () => {
+                const popupWithImage = new PopupWithImage(item, photoPopupSelector);
+                popupWithImage.open();
+            });
             const cardElement = card.generateCard();
 
             cardList.addItem(cardElement);
-        }
-    },
-    gallerySelector
+        },
+    }, gallerySelector,
 );
 
 cardList.renderItems();
 
 
+
 const editPopup = new Popup(editProfilePopupSelector);
 editProfileButton.addEventListener('click', () => editPopup.open());
-
-
 
 
 // function closePopupByEsc(evt) {

@@ -32,7 +32,7 @@ export const editProfilePopupSelector = '#profile-popup';
 export const profileClose = document.querySelector('#profile-close');
 export const cardClose = document.querySelector('#card-close');
 export const photoClose = document.querySelector('#photo-close');
-export const popupIcon = document.querySelectorAll('.popup__icon');
+export const popupIcon = '.popup__icon';
 
 export const profileForm = document.querySelector('#profile-form');
 export const cardForm = document.querySelector('#card-form');
@@ -53,3 +53,4 @@ export const editProfileButton = document.querySelector('.profile__edit-button')
 export const addCardButton = document.querySelector('.profile__add-button');
 export const gallerySelector = '.gallery';
 export const gallery = document.querySelector('.gallery');
+export const galleryCardIm = document.querySelector('.gallery__card-image');
