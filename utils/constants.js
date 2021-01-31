@@ -25,32 +25,23 @@ export const initialCards = [
     }
 ];
 
+export const validationSettings = {
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+}
+
 export const addCardPopupSelector = '#card-popup';
 export const photoPopupSelector = '#photo-popup';
 export const editProfilePopupSelector = '#profile-popup';
+export const cardTemplateSelector = '#card-template';
+export const popupContainerSelector = '.popup__container';
 
-export const profileClose = document.querySelector('#profile-close');
-export const cardClose = document.querySelector('#card-close');
-export const photoClose = document.querySelector('#photo-close');
-export const popupIcon = '.popup__icon';
-
-export const profileForm = document.querySelector('#profile-form');
-export const cardForm = document.querySelector('#card-form');
-
-export const cardNameInput = document.querySelector('#card-name-input');
-export const cardLinkInput = document.querySelector('#card-link-input');
-
-export const profileTitle = document.querySelector('.profile__title');
-export const profileSubtitle = document.querySelector('.profile__subtitle');
-
-export const nameInput = document.querySelector('.popup__input_type_title');
-export const jobInput = document.querySelector('.popup__input_type_subtitle');
-
-export const popupImage = document.querySelector('.popup__gallery-photo');
-export const popupCardSubtitle = document.querySelector('.popup__gallery-subtitle');
+export const profileTitle = '.profile__title';
+export const profileSubtitle = '.profile__subtitle';
 
 export const editProfileButton = document.querySelector('.profile__edit-button');
 export const addCardButton = document.querySelector('.profile__add-button');
 export const gallerySelector = '.gallery';
-export const gallery = document.querySelector('.gallery');
-export const galleryCardIm = document.querySelector('.gallery__card-image');
