@@ -1,7 +1,3 @@
-import {photoPopupSelector, popupCardSubtitle, popupImage} from "../utils/constants.js";
-import {openPopup} from "../pages/index.js"
-import Popup from "./Popup.js";
-
 export default class Card {
     constructor(data, cardSelector, handleCardClick) {
         this._name = data.name;
@@ -27,10 +23,10 @@ export default class Card {
         const cardImage = this._element.querySelector('.gallery__card-image')
         cardImage.src = this._link;
         cardImage.alt = this._name;
+        cardImage.addEventListener('click', this._handleCardClick);
 
         this._handleLikeClick();
         this._handleTrashCardClick();
-        this._element.addEventListener('click', this._handleCardClick);
 
         return this._element;
     }
@@ -46,14 +42,4 @@ export default class Card {
             evt.target.parentElement.remove();
         });
     }
-
-    // _handleCardClick() {
-    //     this._element.querySelector('.gallery__card-image').addEventListener('click', evt => {
-    //         // popupImage.alt = this._name;
-    //         // popupImage.src = this._link;
-    //         // popupCardSubtitle.textContent = this._name;
-    //         // open(photoPopupSelector);
-    //
-    //     });
-    // }
 }
