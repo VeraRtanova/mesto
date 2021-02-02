@@ -20,20 +20,26 @@ import {
     popupContainerSelector
 } from "../utils/constants.js";
 
-const cardRenderer = (item) => {
-    const card = new Card(item, cardTemplateSelector, () => {
-        popupWithImage.open(item.name, item.link);
-    });
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
-}
-
-//Галлерея
+// //Галлерея
 const cardList = new Section({
         data: initialCards,
         renderer: (item) => cardRenderer(item),
     }, gallerySelector,
 );
+
+const cardRenderer = (item) => {
+    const cardElement = createCard(item)
+    cardList.addItem(cardElement);
+}
+
+const createCard = (item) => {
+    const card = new Card(item, cardTemplateSelector, () => {
+        popupWithImage.open(item.name, item.link);
+    });
+    const cardElement = card.generateCard();
+    return cardElement
+}
+
 const popupWithImage = new PopupWithImage(photoPopupSelector);
 popupWithImage.setEventListeners();
 
