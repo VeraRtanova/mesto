@@ -36,6 +36,8 @@ export const validationSettings = {
 export const addCardPopupSelector = '#card-popup';
 export const photoPopupSelector = '#photo-popup';
 export const editProfilePopupSelector = '#profile-popup';
+export const avatarProfilePopupSelector = '#avatar-popup';
+export const trashCardPopupSelector = '#trash-popup';
 export const cardTemplateSelector = '#card-template';
 export const popupContainerSelector = '.popup__container';
 
@@ -43,5 +45,8 @@ export const profileTitle = '.profile__title';
 export const profileSubtitle = '.profile__subtitle';
 
 export const editProfileButton = document.querySelector('.profile__edit-button');
+export const profileAvatar = document.querySelector('.avatar__container');
+export const avatarSelector = ('.profile__avatar');
 export const addCardButton = document.querySelector('.profile__add-button');
+export const trashButton = document.querySelector('.gallery__card-trash-button');
 export const gallerySelector = '.gallery';

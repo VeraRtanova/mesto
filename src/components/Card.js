@@ -1,9 +1,10 @@
 export default class Card {
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector, handleCardClick, handleTrashClick) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._handleTrashClick = handleTrashClick;
     }
 
     _getTemplate() {
@@ -38,8 +39,7 @@ export default class Card {
     }
 
     _handleTrashCardClick() {
-        this._element.querySelector('.gallery__card-trash-button').addEventListener('click', (evt) => {
-            evt.target.parentElement.remove();
-        });
+        const handleTrash = this._element.querySelector('.gallery__card-trash-button')
+        handleTrash.addEventListener('click', this._handleTrashClick);
     }
 }
