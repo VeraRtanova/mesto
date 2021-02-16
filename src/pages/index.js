@@ -16,7 +16,6 @@ import {
     editProfileButton,
     addCardButton,
     gallerySelector,
-    initialCards,
     validationSettings,
     cardTemplateSelector,
     popupContainerSelector,
@@ -26,12 +25,26 @@ import {
     trashButton
 } from "../utils/constants.js";
 
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-20',
+    headers: {
+        authorization: '7292ee4a-7ebb-40aa-bff9-e15391a63339',
+        'Content-Type': 'application/json'
+    }
+})
+
 //Галлерея
-const cardList = new Section({
-        data: initialCards,
-        renderer: (item) => cardRenderer(item),
-    }, gallerySelector,
-);
+let cardList;
+
+api.loadingCards()
+    .then(cards => {
+        cardList = new Section({
+                data: cards,
+                renderer: (item) => cardRenderer(item),
+            }, gallerySelector,
+        );
+        cardList.renderItems();
+    });
 
 const cardRenderer = (item) => {
     const cardElement = createCard(item)
@@ -47,40 +60,38 @@ const createCard = (item) => {
     const cardElement = card.generateCard();
     return cardElement
 }
-
 const popupWithImage = new PopupWithImage(photoPopupSelector);
 popupWithImage.setEventListeners();
-
-cardList.renderItems();
 
 //Добавление новой карточки
 addCardButton.addEventListener('click', () => {
     addCardPopup.open();
 })
-const addCardPopup = new PopupWithForm(addCardPopupSelector, (formData) => cardRenderer(formData));
+const addCardPopup = new PopupWithForm(addCardPopupSelector, (formData) => {
+    api.addNewCard(formData.name, formData.link)
+        .then(res => {
+            cardRenderer(res);
+        })
+})
 addCardPopup.setEventListeners();
 
 //Открытие попап по иконке удаления
-// this._element.querySelector('.gallery__card-trash-button').addEventListener('click', (evt) => {
-//             // evt.target.parentElement.remove();
-
-//
-// const trashPopup = new PopupWithForm(trashCardPopupSelector);
-//     evt.target.parentElement.remove();
-// })
-// trashPopup.setEventListeners();
-// trashPopup.open();
-// }
 
 
-// Добавить новый Аватар
+// Изменить Аватар
 profileAvatar.addEventListener('click', () => {
     avatarPopup.open();
 })
 const avatarRenderer = (link) => {
-    profileAvatar.src = link;
+    userInfo.setAvatar(link);
 }
-const avatarPopup = new PopupWithForm(avatarProfilePopupSelector, (formData) => avatarRenderer(formData.link));
+const avatarPopup = new PopupWithForm(avatarProfilePopupSelector, (formData) => {
+    avatarRenderer(formData.link);
+    api.updateUserAvatar(formData.link)
+        .then(res => {
+            userInfo.setAvatar(res.link);
+        })
+})
 avatarPopup.setEventListeners();
 
 //Редактирование профиля Жак ив Кусто
@@ -102,14 +113,6 @@ document.querySelectorAll(popupContainerSelector).forEach((formElement) => {
     const formValidator = new FormValidator(validationSettings, formElement);
     formValidator.enableValidation();
 });
-
-const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-20',
-    headers: {
-        authorization: '7292ee4a-7ebb-40aa-bff9-e15391a63339',
-        'Content-Type': 'application/json'
-    }
-})
 
 api.getUserInfo()
     .then(userData => {
