@@ -54,7 +54,17 @@ export default class Api {
             .then(res => res.json())
             .catch()
     }
-
+    deleteCard(id) {
+        return fetch(`${this._baseUrl}/cards/cardId`, {
+            method: 'DELETE',
+            headers: this._headers,
+            body: JSON.stringify({
+                id: id,
+            }),
+        })
+            .then(res => res.json())
+            .catch()
+    }
 }
 
 

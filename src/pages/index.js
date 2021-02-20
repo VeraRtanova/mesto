@@ -6,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
+import PopupWithSubmit from "../components/PopupWithSubmit.js";
 import {
     addCardPopupSelector,
     photoPopupSelector,
@@ -55,7 +56,6 @@ const createCard = (item) => {
     const card = new Card(item, cardTemplateSelector, () => {
             popupWithImage.open(item.name, item.link);
         },
-        // trashPopup.open()
     )
     const cardElement = card.generateCard();
     return cardElement
@@ -75,9 +75,6 @@ const addCardPopup = new PopupWithForm(addCardPopupSelector, (formData) => {
 })
 addCardPopup.setEventListeners();
 
-//Открытие попап по иконке удаления
-
-
 // Изменить Аватар
 profileAvatar.addEventListener('click', () => {
     avatarPopup.open();
@@ -93,6 +90,23 @@ const avatarPopup = new PopupWithForm(avatarProfilePopupSelector, (formData) => 
         })
 })
 avatarPopup.setEventListeners();
+
+//Удаление карточки
+
+// trashButton.addEventListener('click', () => {
+//     console.log('привет');
+// })
+// const deletionCard = new PopupWithSubmit(trashCardPopupSelector, () => {
+//     cardList.target.classList.remove();
+//     api.deleteCard()
+//         .then(res => {
+//             cardList.target.classList.remove();
+//         }).finally(() => {
+//             deletionCard.close();
+//     })
+// })
+// deletionCard.setEventListeners();
+
 
 //Редактирование профиля Жак ив Кусто
 editProfileButton.addEventListener('click', () => {

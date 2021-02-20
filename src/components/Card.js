@@ -1,10 +1,10 @@
 export default class Card {
-    constructor(data, cardSelector, handleCardClick, handleTrashClick) {
+    constructor(data, cardSelector, handleCardClick, cardId) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
-        this._handleTrashClick = handleTrashClick;
+        this._cardId = cardId;
     }
 
     _getTemplate() {
@@ -27,7 +27,7 @@ export default class Card {
         cardImage.addEventListener('click', this._handleCardClick);
 
         this._handleLikeClick();
-        this._handleTrashCardClick();
+        // this._handleTrashCardClick();
 
         return this._element;
     }
@@ -38,8 +38,11 @@ export default class Card {
         });
     }
 
-    _handleTrashCardClick() {
-        const handleTrash = this._element.querySelector('.gallery__card-trash-button')
-        handleTrash.addEventListener('click', this._handleTrashClick);
+    // _handleTrashCardClick() {
+    //     this._element.closest('.gallery__card').remove();
+    // }
+
+    getIdCard() {
+        return this._cardId;
     }
 }
