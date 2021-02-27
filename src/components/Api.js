@@ -63,6 +63,16 @@ export default class Api {
             .then(res => res.json())
             .catch()
     }
+
+    likeCard(cardId, isLiked) {
+        return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+            method: !isLiked ? 'PUT' : 'DELETE',
+            headers: this._headers
+        })
+            .then(res => res.json())
+            .catch()
+    }
+
 }
 
 

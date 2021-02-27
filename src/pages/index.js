@@ -63,13 +63,24 @@ const createCard = (item) => {
                     .then(res => card.remove())
             }
         }),
-
-        isOwner: item.owner._id === userInfo.getUserId()
+        isOwner: item.owner._id === userInfo.getUserId(),
+        isLiked: item.likes.some((like) => like._id === userInfo.getUserId()),
+        handleLikeClick: (isLiked) => {
+            api.likeCard(item._id, isLiked)
+                .then(res => {
+                    card.updateLikes(res.likes.some(isCardLiked))
+                });
+        }
     })
 
     const cardElement = card.generateCard();
     return cardElement
 }
+
+function isCardLiked(like) {
+    return like._id === userInfo.getUserId();
+}
+
 const popupWithImage = new PopupWithImage(photoPopupSelector);
 popupWithImage.setEventListeners();
 
