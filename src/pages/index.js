@@ -58,17 +58,17 @@ const createCard = (item) => {
         handleCardClick: () => popupWithImage.open(item.name, item.link),
         handleDeleteClick: () => popupConfirm.open({
             handleConfirm: () => {
+                popupConfirm.setLoading("Удаление...")
                 api.deleteCard(item._id)
                     .then(res => card.remove())
+                    .finally(() => popupConfirm.close())
             }
         }),
         isOwner: item.owner._id === userInfo.getUserId(),
         isLiked: item.likes.some((like) => like._id === userInfo.getUserId()),
         handleLikeClick: (isLiked) => {
             api.likeCard(item._id, isLiked)
-                .then(res => {
-                    card.updateLikes(res.likes.some(isCardLiked), res.likes.length)
-                });
+                .then(res => card.updateLikes(res.likes.some(isCardLiked), res.likes.length));
         },
         likesCount: item.likes.length
     })
@@ -88,10 +88,10 @@ popupConfirm.setEventListeners();
 addCardButton.addEventListener('click', () => addCardPopup.open());
 
 const addCardPopup = new PopupWithForm(addCardPopupSelector, (formData) => {
+    addCardPopup.setLoading("Сохранение...");
     api.addNewCard(formData.name, formData.link)
-        .then(res => {
-            cardRenderer(res);
-        })
+        .then(res => cardRenderer(res))
+        .finally(() => addCardPopup.close());
 })
 addCardPopup.setEventListeners();
 
@@ -115,10 +115,10 @@ editProfileButton.addEventListener('click', () => {
 })
 
 const profilePopup = new PopupWithForm(editProfilePopupSelector, (formData) => {
+    profilePopup.setLoading("Сохранение...")
     api.updateUserInfo(formData.name, formData.info)
-        .then(res => {
-            userInfo.setUserInfo(res.name, res.about);
-        })
+        .then(res => userInfo.setUserInfo(res.name, res.about))
+        .finally(() => profilePopup.close())
 })
 profilePopup.setEventListeners();
 
