@@ -6,7 +6,8 @@ export default class Api {
 
     getUserInfo() {
         return fetch(`${this._baseUrl}/users/me`, {headers: this._headers})
-            .then(res => res.json())
+            .then(this._handleResult)
+            .catch(this._handleError)
     }
 
     updateUserInfo(name, info) {
@@ -18,8 +19,8 @@ export default class Api {
                 about: info,
             })
         })
-            .then(res => res.json())
-            .catch()
+            .then(this._handleResult)
+            .catch(this._handleError)
     }
 
     updateUserAvatar(link) {
@@ -30,16 +31,16 @@ export default class Api {
                 avatar: link,
             })
         })
-            .then(res => res.json())
-            .catch()
+            .then(this._handleResult)
+            .catch(this._handleError)
     }
 
     loadingCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-            .then(res => res.json())
-            .catch()
+            .then(this._handleResult)
+            .catch(this._handleError)
     }
 
     addNewCard(name, link) {
@@ -51,8 +52,8 @@ export default class Api {
                 link: link,
             }),
         })
-            .then(res => res.json())
-            .catch()
+            .then(this._handleResult)
+            .catch(this._handleError)
     }
 
     deleteCard(id) {
@@ -60,8 +61,8 @@ export default class Api {
             method: 'DELETE',
             headers: this._headers
         })
-            .then(res => res.json())
-            .catch()
+            .then(this._handleResult)
+            .catch(this._handleError)
     }
 
     likeCard(cardId, isLiked) {
@@ -69,8 +70,19 @@ export default class Api {
             method: !isLiked ? 'PUT' : 'DELETE',
             headers: this._headers
         })
-            .then(res => res.json())
-            .catch()
+            .then(this._handleResult)
+            .catch(this._handleError)
+    }
+
+    _handleResult(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`)
+    }
+
+    _handleError(err) {
+        console.log(err);
     }
 
 }
