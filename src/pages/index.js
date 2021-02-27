@@ -6,7 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import PopupWithSubmit from "../components/PopupWithSubmit.js";
+import PopupConfirm from "../components/PopupConfirm.js";
 import {
     addCardPopupSelector,
     photoPopupSelector,
@@ -57,10 +57,13 @@ const createCard = (item) => {
         data: item,
         cardSelector: cardTemplateSelector,
         handleCardClick: () => popupWithImage.open(item.name, item.link),
-        handleDeleteClick: () => {
-            api.deleteCard(item._id)
-                .then(res => card.remove())
-        },
+        handleDeleteClick: () => popupConfirm.open({
+            handleConfirm: () => {
+                api.deleteCard(item._id)
+                    .then(res => card.remove())
+            }
+        }),
+
         isOwner: item.owner._id === userInfo.getUserId()
     })
 
@@ -69,6 +72,9 @@ const createCard = (item) => {
 }
 const popupWithImage = new PopupWithImage(photoPopupSelector);
 popupWithImage.setEventListeners();
+
+const popupConfirm = new PopupConfirm(trashCardPopupSelector);
+popupConfirm.setEventListeners();
 
 //Добавление новой карточки
 addCardButton.addEventListener('click', () => {
@@ -103,7 +109,7 @@ avatarPopup.setEventListeners();
 // trashButton.addEventListener('click', () => {
 //     console.log('привет');
 // })
-// const deletionCard = new PopupWithSubmit(trashCardPopupSelector, () => {
+// const deletionCard = new PopupConfirm(trashCardPopupSelector, () => {
 //     cardList.target.classList.remove();
 //     api.deleteCard()
 //         .then(res => {
