@@ -8,22 +8,21 @@ import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import PopupConfirm from "../components/PopupConfirm.js";
 import {
-    addCardPopupSelector,
-    photoPopupSelector,
-    editProfilePopupSelector,
-    avatarProfilePopupSelector,
-    profileTitle,
-    profileSubtitle,
-    editProfileButton,
     addCardButton,
-    gallerySelector,
-    validationSettings,
+    addCardPopupSelector,
+    avatarProfilePopupSelector,
+    avatarSelector,
     cardTemplateSelector,
+    editProfileButton,
+    editProfilePopupSelector,
+    gallerySelector,
+    photoPopupSelector,
+    popupConfirmSelector,
     popupContainerSelector,
     profileAvatar,
-    avatarSelector,
-    trashCardPopupSelector,
-    trashButton
+    profileSubtitle,
+    profileTitle,
+    validationSettings,
 } from "../utils/constants.js";
 
 const api = new Api({
@@ -74,24 +73,20 @@ const createCard = (item) => {
         likesCount: item.likes.length
     })
 
-    const cardElement = card.generateCard();
-    return cardElement
+    return card.generateCard()
 }
 
-function isCardLiked(like) {
-    return like._id === userInfo.getUserId();
-}
+const isCardLiked = like => like._id === userInfo.getUserId();
 
 const popupWithImage = new PopupWithImage(photoPopupSelector);
 popupWithImage.setEventListeners();
 
-const popupConfirm = new PopupConfirm(trashCardPopupSelector);
+const popupConfirm = new PopupConfirm(popupConfirmSelector);
 popupConfirm.setEventListeners();
 
 //Добавление новой карточки
-addCardButton.addEventListener('click', () => {
-    addCardPopup.open();
-})
+addCardButton.addEventListener('click', () => addCardPopup.open());
+
 const addCardPopup = new PopupWithForm(addCardPopupSelector, (formData) => {
     api.addNewCard(formData.name, formData.link)
         .then(res => {
@@ -101,12 +96,9 @@ const addCardPopup = new PopupWithForm(addCardPopupSelector, (formData) => {
 addCardPopup.setEventListeners();
 
 // Изменить Аватар
-profileAvatar.addEventListener('click', () => {
-    avatarPopup.open();
-})
-const avatarRenderer = (link) => {
-    userInfo.setAvatar(link);
-}
+profileAvatar.addEventListener('click', () => avatarPopup.open());
+const avatarRenderer = (link) => userInfo.setAvatar(link);
+
 const avatarPopup = new PopupWithForm(avatarProfilePopupSelector, (formData) => {
     avatarRenderer(formData.link);
     api.updateUserAvatar(formData.link)
@@ -116,28 +108,12 @@ const avatarPopup = new PopupWithForm(avatarProfilePopupSelector, (formData) => 
 })
 avatarPopup.setEventListeners();
 
-//Удаление карточки
-
-// trashButton.addEventListener('click', () => {
-//     console.log('привет');
-// })
-// const deletionCard = new PopupConfirm(trashCardPopupSelector, () => {
-//     cardList.target.classList.remove();
-//     api.deleteCard()
-//         .then(res => {
-//             cardList.target.classList.remove();
-//         }).finally(() => {
-//             deletionCard.close();
-//     })
-// })
-// deletionCard.setEventListeners();
-
-
 //Редактирование профиля Жак ив Кусто
 editProfileButton.addEventListener('click', () => {
     profilePopup.open();
     profilePopup.fillForm(userInfo.getUserInfo());
 })
+
 const profilePopup = new PopupWithForm(editProfilePopupSelector, (formData) => {
     api.updateUserInfo(formData.name, formData.info)
         .then(res => {
