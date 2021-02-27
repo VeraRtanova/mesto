@@ -68,9 +68,10 @@ const createCard = (item) => {
         handleLikeClick: (isLiked) => {
             api.likeCard(item._id, isLiked)
                 .then(res => {
-                    card.updateLikes(res.likes.some(isCardLiked))
+                    card.updateLikes(res.likes.some(isCardLiked), res.likes.length)
                 });
-        }
+        },
+        likesCount: item.likes.length
     })
 
     const cardElement = card.generateCard();

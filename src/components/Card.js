@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({data, cardSelector, handleCardClick, handleDeleteClick, isOwner, isLiked, handleLikeClick}) {
+    constructor({data, cardSelector, handleCardClick, handleDeleteClick, isOwner, isLiked, handleLikeClick, likesCount}) {
         this._name = data.name;
         this._link = data.link;
         this._cardId = data._id;
@@ -9,6 +9,7 @@ export default class Card {
         this._isOwner = isOwner;
         this._isLiked = isLiked;
         this._handleLikeClick = handleLikeClick;
+        this._likesCount = likesCount;
     }
 
     _getTemplate() {
@@ -33,7 +34,7 @@ export default class Card {
         this._handleLikeClickOld();
         this._handleTrashCardClick();
         this._updateDeleteVisibility();
-        this.updateLikes(this._isLiked);
+        this.updateLikes(this._isLiked, this._likesCount);
 
         return this._element;
     }
@@ -59,12 +60,16 @@ export default class Card {
         }
     }
 
-    updateLikes(isLiked) {
+    updateLikes(isLiked, likesCount) {
         this._isLiked = isLiked
+        this._likesCount = likesCount
+
         if (this._isLiked) {
             this._element.querySelector('.gallery__card-like-button').classList.add('like__active');
         } else {
             this._element.querySelector('.gallery__card-like-button').classList.remove('like__active');
         }
+
+        this._element.querySelector('.gallery__card-like-text').textContent = this._likesCount;
     }
 }
