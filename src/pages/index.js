@@ -28,7 +28,7 @@ import {
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-20',
     headers: {
-        authorization: '7292ee4a-7ebb-40aa-bff9-e15391a63',
+        authorization: '7292ee4a-7ebb-40aa-bff9-e15391a63339',
         'Content-Type': 'application/json'
     }
 })
