@@ -6,7 +6,6 @@ export default class PopupWithSubmit extends Popup {
         this._container = container;
         this._handleTrashClick = handleTrashClick;
         this._formElement = this._container.querySelector('#trash-popup');
-        this._element = this._container.querySelector('.gallery__card-trash-button');
     }
 
     setEventListeners() {
@@ -23,8 +22,8 @@ export default class PopupWithSubmit extends Popup {
     }
 
     _handleTrashClick() {
-        this._element.addEventListener('click', (evt) => {
-            evt.target.classList.remove('like__active');
+        this._element.querySelector('.gallery__card-trash-button').addEventListener('click', (evt) => {
+            evt.target._container.remove();
         });
     }
 }

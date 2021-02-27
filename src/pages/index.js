@@ -53,10 +53,17 @@ const cardRenderer = (item) => {
 }
 
 const createCard = (item) => {
-    const card = new Card(item, cardTemplateSelector, () => {
-            popupWithImage.open(item.name, item.link);
+    const card = new Card({
+        data: item,
+        cardSelector: cardTemplateSelector,
+        handleCardClick: () => popupWithImage.open(item.name, item.link),
+        handleDeleteClick: () => {
+            api.deleteCard(item._id)
+                .then(res => card.remove())
         },
-    )
+        isOwner: item.owner._id === userInfo.getUserId()
+    })
+
     const cardElement = card.generateCard();
     return cardElement
 }
@@ -132,4 +139,5 @@ api.getUserInfo()
     .then(userData => {
         userInfo.setUserInfo(userData.name, userData.about);
         userInfo.setAvatar(userData.avatar);
+        userInfo.setUserId(userData._id);
     })
