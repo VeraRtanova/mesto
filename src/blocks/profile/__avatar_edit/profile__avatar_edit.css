@@ -1,0 +1,9 @@
+.profile__avatar_edit {
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    display:none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
